@@ -1,3 +1,8 @@
+/*
+	Retrieve shots data from stats.nba.com API
+	Generate request from prompted user input on command line
+*/
+
 const NBA = require("nba");
 const fs = require('fs');
 
@@ -7,6 +12,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+// Get user input
 rl.question("Enter player's name (leave blank to include all players):  ", function(name) {
 	rl.question("Enter season in yyyy-yy format, eg. 2019-20 (leave blank to include all seasons):  ", function(season) {
 		var req = {};
@@ -24,6 +30,7 @@ rl.question("Enter player's name (leave blank to include all players):  ", funct
 			console.log("Finding all seasons");
 		}
 
+		// Make API call
 		NBA.stats.shots(req).then((shot) => {
 		fs.writeFile("./shotData/" + name.replace(/\s+/g, '') + season + "Shots" + Date.now() + '.json', JSON.stringify(shot), function(err) {
 			if (err) return console.log(err);
