@@ -30,9 +30,7 @@ if(name != ""){
 	req['PlayerID'] = NBA.findPlayer(name).playerId;
 }
 
-if(season != ""){
-	req['Season'] = season;
-}
+req['Season'] = season;
 
 var fileName = "./shotData/" + name.replace(/\s+/g, '') + season + "Shots" + Date.now() + '.json';
 

@@ -23,15 +23,16 @@ rl.question("Enter player's name (leave blank to include all players):  ", funct
 			console.log("Fetching all shots for all players");
 		}
 
+		req['Season'] = season;
+
 		if(season != ""){
 			console.log("Finding season: " + season);
-			req['Season'] = season;
 		} else {
 			console.log("Finding all seasons");
 		}
 
 		// Make API call
-		NBA.stats.shots(req).then((shot) => {
+		NBA.stats.shots({req}).then((shot) => {
 		fs.writeFile("./shotData/" + name.replace(/\s+/g, '') + season + "Shots" + Date.now() + '.json', JSON.stringify(shot), function(err) {
 			if (err) return console.log(err);
 			console.log("did the thing");
