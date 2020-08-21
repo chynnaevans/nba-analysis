@@ -25,7 +25,7 @@ rl.question("Enter player's name (leave blank to include all players):  ", funct
 		}
 
 		NBA.stats.shots(req).then((shot) => {
-		fs.writeFile(name.replace(/\s+/g, '') + season + "Shots" + Date.now() + '.json', JSON.stringify(shot), function(err) {
+		fs.writeFile("./shotData/" + name.replace(/\s+/g, '') + season + "Shots" + Date.now() + '.json', JSON.stringify(shot), function(err) {
 			if (err) return console.log(err);
 			console.log("did the thing");
 		})
